@@ -1,0 +1,34 @@
+<mat-card>
+    Pokemon list
+<span fxFlex></span>
+</mat-card>
+<mat-card>
+    <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="position">
+            <th mat-header-cell *matHeaderCellDef> # </th>
+            <td mat-cell *matCellDef="let element;let i=index"> {{i+1}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Name </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let element" class="actions">
+                <!-- <button  class="action-btn" [routerLink]="['../view',1]">
+                    <i class="fa fa-eye"></i>
+                </button> -->
+                <button mat-icon-button (click)="onItemClick(element.url)">
+                    <mat-icon>remove_red_eye</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card>
