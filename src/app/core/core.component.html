@@ -1,0 +1,30 @@
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+  </button>
+  <span>Demo Project</span>
+  <span fxFlex></span>
+  <button mat-stroked-button>
+    <mat-icon>account_circle</mat-icon>
+    <span>Ranjeet</span>
+  </button>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav">
+    <mat-toolbar  color="primary">
+      <span>Menu</span>
+    </mat-toolbar>
+    <mat-nav-list>
+      <mat-list-item  routerLink="checklist/all">
+        <mat-icon mat-list-icon>home</mat-icon>
+        <h4 mat-line>Home</h4>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Add Content Here -->
+    <section>
+      <router-outlet></router-outlet>
+    </section>
+  </mat-sidenav-content>
+</mat-sidenav-container>
