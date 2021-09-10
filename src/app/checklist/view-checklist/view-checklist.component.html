@@ -1,0 +1,90 @@
+<mat-card>
+    <button mat-icon-button color="primary" routerLink="/portal/checklist/all">
+        <mat-icon>arrow_back</mat-icon>
+    </button>
+    Pokemon Master/ BaseExperience #{{pokeman.base_experience}}
+</mat-card>
+<section fxLayout="row" fxLayoutGap="2%">
+    <mat-card fxFlex="50%">
+        <mat-card-subtitle>Pokeman Detail</mat-card-subtitle>
+        Name: <p>{{pokeman.species.name}}</p>
+        weight:
+        <p>{{pokeman.weight}}</p>
+    </mat-card>
+    <mat-card fxFlex="50%">
+        <mat-card-subtitle>Sub Categories</mat-card-subtitle>
+        <ng-template #tmplNode let-node="node">
+            <div class="node-item" [attr.data-id]="node.id" [attr.id]="'node-'+node.id">
+
+                <div class="node-title" (click)="node.isExpanded=!node.isExpanded">
+                    {{node.children.length ? (node.isExpanded?'-&nbsp;':'+') : '&nbsp;&nbsp;&nbsp;'}} &nbsp;&nbsp;&nbsp;
+                    {{node.id}} <span class="item-notes"> ({{node.children.length}}{{node.children.length?', expanded: '
+                        +
+                        !!node.isExpanded:''}})</span>
+                </div>
+                <div *ngIf="node.isExpanded && node.children.length" class="node-children" cdkDropList
+                    [cdkDropListData]="node.children" [id]="node.id" [cdkDropListConnectedTo]="dropTargetIds"
+                    (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
+
+                    <div *ngFor="let child of node.children" cdkDrag [cdkDragData]="child.id"
+                        (cdkDragMoved)="dragMoved($event)">
+                        <ng-container *ngTemplateOutlet="tmplNode,context:{node:child}"></ng-container>
+                    </div>
+
+                </div>
+
+            </div>
+        </ng-template>
+
+        <div cdkDropList [cdkDropListData]="checklist.categories" [id]="'main'" [cdkDropListConnectedTo]="dropTargetIds"
+            (cdkDropListDropped)="drop($event)" [cdkDropListSortingDisabled]="true">
+
+            <div *ngFor="let node of checklist.categories" cdkDrag [cdkDragData]="node.id"
+                (cdkDragMoved)="dragMoved($event)">
+
+                <ng-container *ngTemplateOutlet="tmplNode,context:{node:node}"></ng-container>
+
+            </div>
+        </div>
+    </mat-card>
+</section>
+<section fxLayout="row" fxLayoutGap="2%">
+    <mat-card fxFlex="50%">
+        <mat-card-subtitle>forms</mat-card-subtitle>
+        <mat-selection-list [multiple]="false">
+            <mat-list-option *ngFor="let forms of pokeman.forms">
+                {{forms.name}}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-card>
+    <mat-card fxFlex="50%">
+        <mat-card-subtitle>species</mat-card-subtitle>
+        <mat-selection-list [multiple]="false">
+            <mat-list-option *ngFor="let specie of pokeman.species">
+                {{specie.name}}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-card>
+    <mat-card fxFlex="50%">
+        <mat-card-subtitle>stats</mat-card-subtitle>
+        <mat-selection-list [multiple]="false">
+            <mat-list-option *ngFor="let stat of pokeman.stats">
+                Base stat:  {{stat.base_stat}}
+                Effort:  {{stat.effort}}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-card>
+</section>
+
+<section fxLayout="row" fxLayoutGap="2%">
+    <mat-card fxFlex="50%">
+        <mat-card-subtitle>sprites</mat-card-subtitle>
+        <div> 
+            <img src="{{pokeman.sprites.back_default}}">
+            <img src="{{pokeman.sprites.back_shiny}}">
+            <img src="{{pokeman.sprites.front_default}}">
+            <img src="{{pokeman.sprites.front_shiny}}">
+            <img src="{{pokeman.sprites.back_default}}">
+       </div>
+    </mat-card>
+</section>    
