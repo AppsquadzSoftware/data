@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.mat-card {
+    margin-bottom: 15px;
+}
+.h3-lable{
+    font-weight: 400;
+    font-size: 18px;
+    margin-bottom: 10px;
+    line-height: 48px;
+}
+.btn-theam-color{
+    background-color: #2e95fe !important;
+    color: #fff;
+}
+.mat-form-field-outline{
+    box-shadow: 1px 1px 5px 0px #ccc;
+}
+.custom-form .mat-form-field-flex{
+    box-shadow: 1px 1px 5px 0px #ccc;
+    padding: 2px 15px 10px 15px;
+    border-radius: 4px;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex{
+    background: #fff;
+}
+.w-100{
+    width: 100%;
+}
+.mat-drawer-content {
+    background: whitesmoke;
+}
